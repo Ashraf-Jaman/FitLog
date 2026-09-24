@@ -9,7 +9,7 @@ export default function LibrarySection({
   exercises,
 }: LibrarySectionProps) {
   return (
-    <section className="w-full">
+    <section id="library" className="w-full">
       {/* Section Heading */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold tracking-wide text-white sm:text-3xl">

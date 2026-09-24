@@ -3,18 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { scrollToLibrary } from "@/lib/scroll";
 
 const Navbar = () => {
   const pathname = usePathname();
 
   const navItems = [
-    { name: "Workouts", href: "/workouts" },
     { name: "My Plan", href: "/my-plan" },
   ];
 
   return (
     <header className="w-full border-b border-[#1d1f24] bg-[#0d0f12]">
       <nav className="flex min-h-16 w-full items-center justify-between px-4 sm:px-8 lg:px-16 xl:px-20">
+
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image
@@ -28,30 +29,42 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex lg:gap-10">
+
+          {/* Workouts */}
+          <button
+            type="button"
+            onClick={scrollToLibrary}
+            className="rounded-full px-5 py-2 text-sm font-medium text-[#8b8d91] transition-all hover:text-[#ccff00]"
+          >
+            Workouts
+          </button>
+
+          {/* My Plan */}
           {navItems.map((item) => {
             const active = pathname === item.href;
 
             return (
-                <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
-                    active
-                        ? "bg-[#182c0d] text-[#ccff00]"
-                        : "text-[#8b8d91] hover:text-[#ccff00]"
-                    }`}
-                >
-                    {item.name}
-                </Link>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
+                  active
+                    ? "bg-[#182c0d] text-[#ccff00]"
+                    : "text-[#8b8d91] hover:text-[#ccff00]"
+                }`}
+              >
+                {item.name}
+              </Link>
             );
           })}
         </div>
 
         {/* Right Side */}
         <div className="flex items-center gap-3 sm:gap-6">
+
           {/* Plan */}
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="hidden text-sm text-[#8b8d91] xs:inline sm:inline">
+            <span className="hidden text-sm text-[#8b8d91] sm:inline">
               Plan
             </span>
 
@@ -62,7 +75,7 @@ const Navbar = () => {
 
           {/* Saved */}
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="hidden text-sm text-[#8b8d91] xs:inline sm:inline">
+            <span className="hidden text-sm text-[#8b8d91] sm:inline">
               Saved
             </span>
 
@@ -70,11 +83,23 @@ const Navbar = () => {
               0
             </span>
           </div>
+
         </div>
       </nav>
 
       {/* Mobile Navigation */}
-      <div className="flex items-center justify-center gap-8 border-t border-[#17191d] py-3 md:hidden sm:gap-12">
+      <div className="flex items-center justify-center gap-8 border-t border-[#17191d] py-3 sm:gap-12 md:hidden">
+
+        {/* Workouts */}
+        <button
+          type="button"
+          onClick={scrollToLibrary}
+          className="text-sm font-medium text-[#8b8d91] transition-colors hover:text-[#ccff00]"
+        >
+          Workouts
+        </button>
+
+        {/* My Plan */}
         {navItems.map((item) => {
           const active = pathname === item.href;
 
@@ -98,4 +123,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

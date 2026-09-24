@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { scrollToLibrary } from "@/lib/scroll";
 
 const Hero = () => {
   return (
@@ -24,13 +26,14 @@ const Hero = () => {
             into today&apos;s plan, and watch the week&apos;s work add up.
           </p>
 
-          {/* Button */}
-          <Link
-            href="/workouts"
+          {/* Browse Workouts Button */}
+          <button
+            type="button"
+            onClick={scrollToLibrary}
             className="mt-6 inline-flex items-center rounded-md bg-[#ccff00] px-5 py-2.5 text-[10px] font-bold uppercase text-black transition hover:bg-[#b9e600] sm:text-xs"
           >
             Browse Workouts
-          </Link>
+          </button>
         </div>
 
         {/* Right Image */}
